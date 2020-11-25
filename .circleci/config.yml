@@ -1,0 +1,25 @@
+version: 2.1
+executors:
+  docker-publisher:
+    environment:
+      NODE_ENV: development # Needed if playwright is in `devDependencies`
+    docker:
+      - image: mcr.microsoft.com/playwright:bionic
+      - image: circleci/node:12.16
+
+jobs:
+  node:
+  working_directory: ~/testFrame
+  build:
+    executor: docker-publisher
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Install npm dependencies
+          command: |
+            npm install --save
+      - run:
+          name: Run tests
+          command: |
+            ./node tests/

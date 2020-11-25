@@ -1,0 +1,26 @@
+{
+  "name": "tetsframe",
+  "version": "1.0.0",
+  "description": "My framework",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Automation-Luch/tetsFrame.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Automation-Luch/tetsFrame/issues"
+  },
+  "homepage": "https://github.com/Automation-Luch/tetsFrame#readme",
+  "devDependencies": {
+    "playwright": "^1.6.2"
+  }
+}
