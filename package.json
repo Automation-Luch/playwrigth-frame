@@ -20,7 +20,7 @@
     "url": "https://github.com/Automation-Luch/tetsFrame/issues"
   },
   "homepage": "https://github.com/Automation-Luch/tetsFrame#readme",
-  "dependencies": {
+  "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^8.2.1",
     "playwright": "^1.6.2"
