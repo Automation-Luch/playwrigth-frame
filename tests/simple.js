@@ -10,8 +10,7 @@ describe("First test", () => {
   let page;
 
   before(async function () {
-    browser = await chromium.launch();
-    ({
+    browser = await chromium.launch({
       headless: config.isHeadless,
       slowMo: config.slowMo,
       devtools: config.devTools,
