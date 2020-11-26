@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Automation-Luch/tetsFrame#readme",
   "devDependencies": {
-    "playwright": "^1.6.2"
+    "playwright": "^1.6.2",
+    "chai": "^4.2.0"
   }
 }

@@ -9,7 +9,7 @@ executors:
 
 jobs:
   node:
-  working_directory: ~/testFrame
+  working_directory: ~/playwrigth-frame
   build:
     executor: docker-publisher
     steps:
