@@ -8,7 +8,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "run"
+    "test": "./node_modules/mocha/bin/mocha --timeout 30000 ./tests/simple.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/Automation-Luch/tetsFrame#readme",
   "devDependencies": {
-    "playwright": "^1.6.2",
-    "chai": "^4.2.0"
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1",
+    "playwright": "^1.6.2"
   }
 }
