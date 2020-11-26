@@ -16,13 +16,6 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: Install npm dependencies
-          command: |
-            npm install chai
-            npm install mocha
-            npm install --save
-
-      - run:
           name: Run tests
           command: |
             node ./tests/simple.js

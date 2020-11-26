@@ -1,7 +1,7 @@
 {
   "name": "tetsframe",
   "version": "1.0.0",
-  "description": "My framework",
+  "description": "automated testing with playwrigth",
   "main": "index.js",
   "directories": {
     "lib": "lib",
