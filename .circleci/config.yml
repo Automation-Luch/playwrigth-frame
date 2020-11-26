@@ -20,15 +20,6 @@ jobs:
           command: |
             npm install --save
       - run:
-          name: Install npm dependencies
-          command: |
-            npm install chai
-      - run:
-          name: Install npm dependencies
-          command: |
-            npm install mocha
-
-      - run:
           name: Run tests
           command: |
             npm test
