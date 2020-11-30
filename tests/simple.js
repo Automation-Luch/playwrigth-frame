@@ -2,6 +2,8 @@ const { chromium } = require("playwright");
 const expect = require("chai").expect;
 
 const config = require("../lib/config");
+const initBrowserAndPage = require("../lib/helpers").initBrowserAndPage;
+
 const followToPage = require("../lib/helpers").followToPage;
 const shouldExist = require("../lib/helpers").shouldExist;
 const click = require("../lib/helpers").click;
@@ -16,19 +18,9 @@ describe("Login to ROZETKA with valid data", () => {
   let page;
 
   before(async () => {
-    browser = await chromium.launch({
-      headless: config.isHeadless,
-      slowMo: config.slowMo,
-      devtools: config.devTools,
-      timeout: config.launchTimeout,
-    });
-    page = await browser.newPage();
-
-    await page.setDefaultTimeout(config.waitingTimeout);
-    await page.setViewportSize({
-      width: config.viewportWidth,
-      height: config.viewportHeight,
-    });
+    const data = await initBrowserAndPage();
+    browser = data.browser;
+    page = data.page;
   });
 
   after(async () => {
