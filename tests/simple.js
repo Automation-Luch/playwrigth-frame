@@ -2,14 +2,20 @@ const { chromium } = require("playwright");
 const expect = require("chai").expect;
 
 const config = require("../lib/config");
-const loadUrl = require("../lib/helpers").loadUrl;
+const followToPage = require("../lib/helpers").followToPage;
 const shouldExist = require("../lib/helpers").shouldExist;
+const click = require("../lib/helpers").click;
+const typeText = require("../lib/helpers").typeText;
+const { LOGIN, PASSWORD } = require("../lib/credentions");
 
-describe("First test", () => {
+const mainPage = require("../lib/page-objects/mainPage");
+const loginPage = require("../lib/page-objects/loginPage");
+
+describe("Login to ROZETKA with valid data", () => {
   let browser;
   let page;
 
-  before(async function () {
+  before(async () => {
     browser = await chromium.launch({
       headless: config.isHeadless,
       slowMo: config.slowMo,
@@ -17,6 +23,7 @@ describe("First test", () => {
       timeout: config.launchTimeout,
     });
     page = await browser.newPage();
+
     await page.setDefaultTimeout(config.waitingTimeout);
     await page.setViewportSize({
       width: config.viewportWidth,
@@ -24,19 +31,26 @@ describe("First test", () => {
     });
   });
 
-  after(async function () {
+  after(async () => {
     await browser.close();
   });
 
-  it("My first step", async () => {
-    await page.goto("https://www.google.com/", { waitUntil: "networkidle0" });
-
-    await shouldExist(page, '[name="q"]');
-
-    const url = await page.url();
+  it("Go to the ROZETKA main page, check search field and title", async () => {
+    await followToPage(mainPage.URL, page);
+    await shouldExist(mainPage.SEARCH_BUTTON, page);
     const title = await page.title();
+    expect(title).to.contains("ROZETKA");
+  });
 
-    expect(url).to.contain("google");
-    expect(title).to.contains("Google");
+  it("Follow to the login page", async () => {
+    await click(mainPage.LOGIN_LINK, page);
+    await shouldExist(loginPage.LOGIN_BUTTON, page);
+  });
+
+  it("Submit login form", async () => {
+    await click(loginPage.USERNAME_FIELD, page);
+    await typeText(loginPage.USERNAME_FIELD, LOGIN, page);
+    await typeText(loginPage.PASSWORD_FIELD, PASSWORD, page);
+    await click(loginPage.LOGIN_BUTTON, page);
   });
 });
