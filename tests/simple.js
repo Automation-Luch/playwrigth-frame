@@ -1,7 +1,7 @@
+const { chromium } = require("playwright");
 const expect = require("chai").expect;
 
-const initBrowserAndPage = require("../lib/helpers").initBrowserAndPage;
-
+const config = require("../lib/config");
 const followToPage = require("../lib/helpers").followToPage;
 const shouldExist = require("../lib/helpers").shouldExist;
 const click = require("../lib/helpers").click;
@@ -12,10 +12,23 @@ const mainPage = require("../lib/page-objects/mainPage");
 const loginPage = require("../lib/page-objects/loginPage");
 
 describe("Login to ROZETKA with valid data", () => {
+  let browser;
+  let page;
+
   before(async () => {
-    const data = await initBrowserAndPage();
-    browser = data.browser;
-    page = data.page;
+    browser = await chromium.launch({
+      headless: config.isHeadless,
+      slowMo: config.slowMo,
+      devtools: config.devTools,
+      timeout: config.launchTimeout,
+    });
+    page = await browser.newPage();
+
+    await page.setDefaultTimeout(config.waitingTimeout);
+    await page.setViewportSize({
+      width: config.viewportWidth,
+      height: config.viewportHeight,
+    });
   });
 
   after(async () => {
