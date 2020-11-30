@@ -14,9 +14,6 @@ const mainPage = require("../lib/page-objects/mainPage");
 const loginPage = require("../lib/page-objects/loginPage");
 
 describe("Login to ROZETKA with valid data", () => {
-  let browser;
-  let page;
-
   before(async () => {
     const data = await initBrowserAndPage();
     browser = data.browser;
