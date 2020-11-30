@@ -1,7 +1,5 @@
-const { chromium } = require("playwright");
 const expect = require("chai").expect;
 
-const config = require("../lib/config");
 const initBrowserAndPage = require("../lib/helpers").initBrowserAndPage;
 
 const followToPage = require("../lib/helpers").followToPage;
